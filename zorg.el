@@ -77,18 +77,19 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
   (if (org-evil-motion--first-heading-same-level-p)
       (if (org-evil-motion--heading-has-parent-p)
           (progn
+            (if (not (org-at-heading-p))
+                (org-evil-motion-up-heading))
+            (org-fold-hide-entry) ;
             (org-fold-hide-subtree)
             (org-evil-motion-up-heading))
         (if (org-at-heading-p)
             (error "Already at first heading")
           (org-evil-motion-up-heading)))
     (if (not (org-evil-motion--first-heading-same-level-p))
-        (if (org-at-heading-p)
-            (progn
-              (org-fold-hide-subtree)
-              (org-backward-heading-same-level 1)
-              (org-fold-show-children))
-          (org-evil-motion-up-heading))
+        (progn
+          (org-fold-hide-subtree)
+          (org-backward-heading-same-level 1)
+          (org-fold-show-children))
       (error "No more previous headings"))))
 
 
