@@ -24,13 +24,13 @@
 
 ;;;###autoload
 (define-minor-mode zorg-mode
-  "Buffer-local minor mode for navigating 'org-mode' formatted Zetterkasten.
+  "Buffer-local minor mode for navigating 'org-mode' formatted Zettelkasten.
 It is assumed, that the Zettelkasten is:
 
 - fully contained in one org file
 
 - the org files headings structure directly correspond to Luhmann's Folgezettel
-  structure, i.e. its headings are arranged as Luhmann's zettels -
+  structure, i.e. its headings are arranged as Luhmann's Zettels -
   but without explizit id number annotation (e.g. 2a5b) i.e.
 
 - headings on the same indentation level (*..)
