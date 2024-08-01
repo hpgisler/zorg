@@ -10,6 +10,9 @@
 
 ;;; Code:
 
+(require 'org)
+(require 'evil)
+
 :(defvar zorg-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd ")") #'zorg-forward-heading) 
