@@ -21,34 +21,57 @@
 
 ;;;###autoload
 (define-minor-mode zorg-mode
-  "Buffer-local minor mode for sensible navigation of an org-mode formatted zetterkasten.
+  "Buffer-local minor mode for navigating 'org-mode' formatted Zetterkasten.
 It is assumed, that the zettelkasten is:
-- fully condained in one org file
-- the org files headingss structture directry correspond to Luhmann's folgezettel structure, i.e.
-  its headings are arranged as Luhmann's zettels - but without explizit id annodation, i.e.
-  - headings on the same indentation level (*..) correspond to e.g. to ..2a, ..2b etc.
+
+- fully contained in one org file
+
+- the org files headings structure directly correspond to Luhmann's Folgezettel
+
+structure, i.e. its headings are arranged as Luhmann's zettels -
+but without explizit id number annotation (e.g. 2a5b) i.e.
+
+  - headings on the same indentation level (*..)
+    correspond to e.g. to ..2a, ..2b etc.
+
   - sub-headings correspond to e.g. ..2a1, 2a2, etc
-  - when linking to a zettel is required, org's normal linking mechanism to headings is employed
 
-Further, it is assumed that zettels - i.e. individual atomic notes - are quite short.
-Adhering to the style of Luhmann's note taking practice,
-each note fit an a A6 sized zettel.
-This brevity of an zettel is actually not a technical requirement, but it ensures:
-- quick grasp of a zettels content when skimming through the zettelkasten;
-  the readers concentration span should suffice  when scanning such a zettel
-- the file size of the entire zettelkasten remains small enough to be processed fast by emacs
-  e.g. 10'000 zettels, each with a maximum size of 1 kByte of text,
-  leads to a zettelkasten size of 10 MBytes.
+  - when linking to a zettel is required,
+    org's normal linking mechanism to headings is employed
 
-Zorg-mode provides commands and key-bindings for easy interaction with (navigation of)
-the zettels in the zettelkasten - in a similar way as probaly was the case for Luhmann
-with his physical zettelkasten (slip-box).
-The basic idea being that - to a certain degree - zettel discoverability results
-from the zettles arrangement as folgezettels thus allowing discoverability
-when browsing the zettelkasten. that  - very much so as if the 
-easily navigate the zettelka sten's zettels (headings).
-Of course other mechanisms for zettel discoverability should be employed es well,
-such as, direct linking between zettels, topic zettel hubs, linking to related zettels, etc."
+Furthermore it is assumed that Zettels - i.e. individual atomic notes -
+are quite short.  Adhering to the style of Luhmann's note taking practice,
+each note fit on an A6 sized paper Zettel.  This brevity of a Zettel actually
+is not a technical requirement, but it ensures the following:
+
+- Quick grasp of a Zettel's content when skimming through the Zettelkasten;
+  the readers concentration span should suffice when scanning such a Zettel
+
+- Thus the file size of the entire Zettelkasten should remains small enough
+  for fast processing by Emacs.  E.g. 10'000 Zettels,
+  each not larger than 1 kByte, leads to a Zettelkasten sized 10 MBytes.
+
+Zorg-mode provides commands and a keymap 'zorg-mode-map',
+aiming for easy navigation within an 'org-mode' formatted file,
+structured as a Zettelkasten.
+
+Visibility of a Zettel's neighbours is thus provided
+in the style of Luhmannn's Zettelkasten: Org headings following each other
+on the same level or as direct sub-headings form such relationships; such
+relationships might be interpreted as Folgezettels.  Zettels relative location
+thus form implicit links in-between them.  It is assumed that this kind of
+visibility of neighbouring Zettels is relevant for surfacing unexpected
+connections in-between ideas contained in them: Namely during sorting-in
+new Zettels as well as during browsing through the Zettelkasten.
+
+To not obfuscate such relationships in-between Zettels, well-arranged Zettel
+presentation during their browsing seems key.  Of course other mechanisms for
+Zettel discoverability must be employed es well - apart from the implicit
+relationships formed by Folgezettels such as:
+
+- Direct linking between Zettels
+- Creation of Zettels acting as topic hubs, linking to related Zettels
+- etc."
   :lighter " Zorg"
   :keymap zorg-mode-map
   :version "1.0")
