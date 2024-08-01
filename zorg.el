@@ -85,9 +85,23 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
 ;;;###autoload
 (defun zorg-backward-heading ()
   (interactive)
-  (org-fold-hide-subtree)
-  (org-evil-motion-backward-heading)
-  (org-fold-show-children))
+  (if (org-evil-motion--first-heading-same-level-p)
+      (if (org-evil-motion--heading-has-parent-p)
+          (progn
+            (org-fold-hide-subtree)
+            (org-evil-motion-up-heading))
+        (if (org-at-heading-p)
+            (error "Already at first heading")
+          (org-evil-motion-up-heading)))
+    (if (not (org-evil-motion--first-heading-same-level-p))
+        (if (org-at-heading-p)
+            (progn
+              (org-fold-hide-subtree)
+              (org-backward-heading-same-level 1)
+              (org-fold-show-children))
+          (org-evil-motion-up-heading))
+      (error "No more previous headings"))))
+
 
 ;;;###autoload
 (defun zorg-backward-inner-heading ()
