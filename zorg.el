@@ -124,6 +124,9 @@ of the last top level heading."
 
 ;;;###autoload
 (defun zorg-backward-inner-heading ()
+  "Move to super heading if it exists or backward 1 heading at the same level.
+
+The final heading moved to will be the first top level heading."
   (interactive)
   (if (org-evil-motion--heading-has-parent-p)
       (progn
