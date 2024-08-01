@@ -89,12 +89,10 @@ the next higher heading.  The last heading moved to will be the last top level h
         (if (org-at-heading-p)
             (error "Already at first top level heading")
           (org-evil-motion-up-heading)))
-    (if (not (org-evil-motion--first-heading-same-level-p))
-        (progn
-          (org-fold-hide-subtree)
-          (org-backward-heading-same-level 1)
-          (org-fold-show-children))
-      (error "No more previous headings"))))
+    (progn
+      (org-fold-hide-subtree)
+      (org-backward-heading-same-level 1)
+      (org-fold-show-children))))
 
 
 ;;;###autoload
