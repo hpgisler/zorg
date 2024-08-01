@@ -30,17 +30,16 @@ It is assumed, that the zettelkasten is:
 - fully contained in one org file
 
 - the org files headings structure directly correspond to Luhmann's Folgezettel
+  structure, i.e. its headings are arranged as Luhmann's zettels -
+  but without explizit id number annotation (e.g. 2a5b) i.e.
 
-structure, i.e. its headings are arranged as Luhmann's zettels -
-but without explizit id number annotation (e.g. 2a5b) i.e.
+- headings on the same indentation level (*..)
+  correspond to e.g. to ..2a, ..2b etc.
 
-  - headings on the same indentation level (*..)
-    correspond to e.g. to ..2a, ..2b etc.
+- sub-headings correspond to e.g. ..2a1, 2a2, etc
 
-  - sub-headings correspond to e.g. ..2a1, 2a2, etc
-
-  - when linking to a zettel is required,
-    org's normal linking mechanism to headings is employed
+- when linking to a zettel is required,
+  org's normal linking mechanism to headings is employed
 
 Furthermore it is assumed that Zettels - i.e. individual atomic notes -
 are quite short.  Adhering to the style of Luhmann's note taking practice,
