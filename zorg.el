@@ -68,7 +68,7 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
               (org-fold-hide-subtree))
           (org-forward-heading-same-level 1)
           (org-fold-show-children))
-      (error "No more forward headings"))))
+      (error "Already at the last top level heading"))))
     
 
 ;;;###autoload
