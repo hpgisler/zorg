@@ -1,12 +1,14 @@
-;;; zorg.el --- Simple notes with an efficient file-naming scheme -*- lexical-binding: t -*-
+;;; zorg.el --- Zettelkasten navigation for org files, structured as Folgezettels -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
-;; Zorg aims to provide simple browsing movement functions for org files,
-;; structured as a zettelkasten.
+;; Zorg aims to provide simple navigational functions for org files
+;; which are structured as a Zettelkasten, in which each heading
+;; represents a Zettel.  The Zettels (headings) relative location
+;; is significant and thus forms Folgezettel relationships.
+;; (implicit linking)
 
 ;;; Code:
-
 
 :(defvar zorg-mode-map
   (let ((map (make-sparse-keymap)))
@@ -17,11 +19,9 @@
     map)
   "Keymap for `zorg-mode'.")
 
-
 ;;;###autoload
 (define-minor-mode zorg-mode
   "Buffer-local minor mode for sensible navigation of an org-mode formatted zetterkasten.
-
 It is assumed, that the zettelkasten is:
 - fully condained in one org file
 - the org files headingss structture directry correspond to Luhmann's folgezettel structure, i.e.
@@ -49,16 +49,13 @@ when browsing the zettelkasten. that  - very much so as if the
 easily navigate the zettelka sten's zettels (headings).
 Of course other mechanisms for zettel discoverability should be employed es well,
 such as, direct linking between zettels, topic zettel hubs, linking to related zettels, etc."
-
   :lighter " Zorg"
   :keymap zorg-mode-map
   :version "1.0")
 
-
 ;;;###autoload
 (defun zorg-forward-heading ()
   "Move forward 1 heading at the same level.
-
 If there are no more headings at the same level, attempt to move to
 the next higher heading.
 The final heading moved to will be the last top level heading."
@@ -74,12 +71,10 @@ The final heading moved to will be the last top level heading."
           (org-forward-heading-same-level 1)
           (org-fold-show-children))
       (error "Already at the last top level heading"))))
-    
 
 ;;;###autoload
 (defun zorg-backward-heading ()
   "Move backward 1 heading at the same level.
-
 If there are no more headings at the same level, attempt to move to
 the next higher heading.
 The final heading moved to will be the first top level heading."
@@ -100,11 +95,9 @@ The final heading moved to will be the first top level heading."
       (org-backward-heading-same-level 1)
       (org-fold-show-children))))
 
-
 ;;;###autoload
 (defun zorg-inner-or-forward-heading ()
   "Move to sub heading if it exists or forward 1 heading at the same level.
-
 If there are no more headings at the sub- or same level, attempt to move to
 the next higher heading.
 Finally, this command will cycle through all the sub headings
@@ -121,11 +114,9 @@ of the last top level heading."
             (org-fold-show-children))
         (zorg-forward-heading)))))
 
-
 ;;;###autoload
 (defun zorg-outer-or-backward-heading ()
   "Move to super heading if it exists or backward 1 heading at the same level.
-
 The final heading moved to will be the first top level heading."
   (interactive)
   (if (org-evil-motion--heading-has-parent-p)
@@ -135,7 +126,6 @@ The final heading moved to will be the first top level heading."
         (org-fold-hide-subtree)
         (org-evil-motion-up-heading))
     (zorg-backward-heading)))
-
 
 (provide 'zorg)
 
