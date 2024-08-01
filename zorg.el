@@ -77,6 +77,11 @@ the next higher heading.  The last heading moved to will be the last top level h
 
 ;;;###autoload
 (defun zorg-backward-heading ()
+  "Move backward 1 heading at the same level.
+
+If there are no more headings at the same level, attempt to move to
+the next higher heading.
+The final heading moved to will be the first top level heading."
   (interactive)
   (if (org-evil-motion--first-heading-same-level-p)
       (if (org-evil-motion--heading-has-parent-p)
