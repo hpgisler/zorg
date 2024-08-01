@@ -99,9 +99,19 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
 ;;;###autoload
 (defun zorg-forward-inner-heading ()
   (interactive)
+  (if (not (org-before-first-heading-p))
+      (org-fold-hide-entry))
   (org-fold-show-children)
-  (org-next-visible-heading 1)
-  (org-fold-show-children))
+  (if (outline-has-subheading-p)
+      (progn 
+        (org-next-visible-heading 1)
+        (org-fold-show-children))
+    (zorg-forward-heading)))
+
+
+
+
+
 
 
 ;;;###autoload
