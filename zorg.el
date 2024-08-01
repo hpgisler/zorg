@@ -58,11 +58,22 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
 ;;;###autoload
 (defun zorg-forward-heading ()
   (interactive)
-  (org-evil-motion-forward-heading)
-  (org-evil-motion-backward-heading)
-  (org-fold-hide-subtree)
-  (org-evil-motion-forward-heading)
-  (org-fold-show-children))
+  (if (and (org-evil-motion--last-heading-same-level-p) (org-evil-motion--heading-has-parent-p))
+      (if (save-excursion (org-evil-motion-up-heading) (not (org-evil-motion--last-heading-same-level-p)))
+          (progn
+            (org-evil-motion-up-heading)
+            (org-fold-hide-subtree)
+            (org-evil-motion-forward-heading)
+            (org-fold-show-children))
+        (error "No more forward headings"))
+    (if (not (org-evil-motion--last-heading-same-level-p))
+        (progn
+          (if (org-at-heading-p)
+              (org-fold-hide-subtree))
+          (org-forward-heading-same-level 1)
+          (org-fold-show-children))
+      (error "No more forward headings"))))
+
 
 ;;;###autoload
 (defun zorg-forward-inner-heading ()
