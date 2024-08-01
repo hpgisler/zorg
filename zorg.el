@@ -83,7 +83,7 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
             (org-fold-hide-subtree)
             (org-evil-motion-up-heading))
         (if (org-at-heading-p)
-            (error "Already at first heading")
+            (error "Already at first top level heading")
           (org-evil-motion-up-heading)))
     (if (not (org-evil-motion--first-heading-same-level-p))
         (progn
