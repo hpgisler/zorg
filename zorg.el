@@ -103,6 +103,12 @@ The final heading moved to will be the first top level heading."
 
 ;;;###autoload
 (defun zorg-forward-inner-heading ()
+  "Move to sub heading if it exists or forward 1 heading at the same level.
+
+If there are no more headings at the sub- or same level, attempt to move to
+the next higher heading.
+Finally, this command will cycle through all the sub headings
+of the last top level heading."
   (interactive)
   (if (org-before-first-heading-p)
       (zorg-forward-heading)
