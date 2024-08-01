@@ -49,9 +49,9 @@ is not a technical requirement, but it ensures the following:
 - Quick grasp of a Zettel's content when skimming through the Zettelkasten;
   the readers concentration span should suffice when scanning such a Zettel
 
-- Thus the file size of the entire Zettelkasten should remains small enough
+- Thus the file size of the entire Zettelkasten should remain small enough
   for fast processing by Emacs.  E.g. 10'000 Zettels,
-  each not larger than 1 kByte, leads to a Zettelkasten sized 10 MBytes.
+  each not larger than 1 k Byte, leads to a Zettelkasten sized 10 M Bytes.
 
 Zorg-mode provides commands and a keymap 'zorg-mode-map',
 aiming for easy navigation within an 'org-mode' formatted file,
@@ -67,11 +67,11 @@ connections in-between ideas contained in them: Namely during sorting-in
 new Zettels as well as during browsing through the Zettelkasten.
 
 To not obfuscate such relationships in-between Zettels, well-arranged Zettel
-presentation during their browsing seems key.  Of course other mechanisms for
-Zettel discoverability must be employed es well - apart from the implicit
-relationships formed by Folgezettels such as:
+presentation during Zettel browsing seems key.  (The aim of this package.)
+Of course other mechanisms for Zettel discoverability must be employed es well -
+apart from the implicit relationships formed by Folgezettels such as:
 
-- Direct linking between Zettels
+- Direct linking between Zettels, via 'org-mode's' provided mechanisms.
 - Creation of Zettels acting as topic hubs, linking to related Zettels
 - etc."
   :lighter " Zorg"
