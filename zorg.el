@@ -1,5 +1,15 @@
 ;;; zorg.el --- Zettelkasten navigation for org files, structured as Folgezettels -*- lexical-binding: t -*-
 
+;; Copyright (C) 2024 Hanspeter Gisler
+
+;; Author: Hanspeter Gisler <info1@gisler.pro>
+;; Maintainer: Hanspeter Gisler <info1@gisler.pro>
+;; Created: 2024
+;; Version: 1.0
+;; Package-Requires: ((emacs "27.1") (org "9.6.15") (evil "1.15.0"))
+;; Homepage: https://github.com/hpgisler/zorg
+;; Keywords: Zettelkasten, org
+
 ;;; Commentary:
 
 ;; Zorg aims to provide simple navigational functions for org files
