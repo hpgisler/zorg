@@ -25,7 +25,7 @@
 ;;;###autoload
 (define-minor-mode zorg-mode
   "Buffer-local minor mode for navigating 'org-mode' formatted Zetterkasten.
-It is assumed, that the zettelkasten is:
+It is assumed, that the Zettelkasten is:
 
 - fully contained in one org file
 
