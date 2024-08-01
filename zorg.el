@@ -25,10 +25,10 @@
 
 :(defvar zorg-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd ")") #'zorg-forward-heading) 
-    (define-key map (kbd "]") #'zorg-backward-heading) 
-    (define-key map (kbd "|") #'zorg-inner-or-forward-heading) 
-    (define-key map (kbd ">") #'zorg-outer-or-backward-heading) 
+    (define-key map (kbd ")") #'zorg-forward-heading)
+    (define-key map (kbd "]") #'zorg-backward-heading)
+    (define-key map (kbd "|") #'zorg-inner-or-forward-heading)
+    (define-key map (kbd ">") #'zorg-outer-or-backward-heading)
     map)
   "Keymap for `zorg-mode'.")
 
