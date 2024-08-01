@@ -68,7 +68,7 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
         (error "No more forward headings"))
     (if (not (org-evil-motion--last-heading-same-level-p))
         (progn
-          (if (org-at-heading-p)
+          (if (not (org-before-first-heading-p))
               (org-fold-hide-subtree))
           (org-forward-heading-same-level 1)
           (org-fold-show-children))
