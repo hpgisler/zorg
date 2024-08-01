@@ -60,7 +60,8 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
   "Move forward 1 heading at the same level.
 
 If there are no more headings at the same level, attempt to move to
-the next higher heading.  The last heading moved to will be the last top level heading."
+the next higher heading.
+The final heading moved to will be the last top level heading."
   (interactive)
   (if (and (org-evil-motion--last-heading-same-level-p) (org-evil-motion--heading-has-parent-p))
       (progn
