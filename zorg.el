@@ -114,6 +114,8 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
   (interactive)
   (if (org-evil-motion--heading-has-parent-p)
       (progn
+        (if (not (org-at-heading-p))
+            (org-evil-motion-up-heading))
         (org-fold-hide-subtree)
         (org-evil-motion-up-heading))
     (zorg-backward-heading)))
