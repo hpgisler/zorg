@@ -76,13 +76,6 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
 
 
 ;;;###autoload
-(defun zorg-forward-inner-heading ()
-  (interactive)
-  (org-fold-show-children)
-  (org-next-visible-heading 1)
-  (org-fold-show-children))
-
-;;;###autoload
 (defun zorg-backward-heading ()
   (interactive)
   (if (org-evil-motion--first-heading-same-level-p)
@@ -104,15 +97,23 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
 
 
 ;;;###autoload
-(defun zorg-backward-inner-heading ()
+(defun zorg-forward-inner-heading ()
   (interactive)
-  (org-fold-hide-subtree)
-  (org-evil-motion-backward-heading)
   (org-fold-show-children)
-  (org-evil-motion-forward-heading)
-  (org-previous-visible-heading 1)
+  (org-next-visible-heading 1)
   (org-fold-show-children))
 
+
+;;;###autoload
+(defun zorg-backward-inner-heading ()
+  (interactive)
+  (if (org-evil-motion--heading-has-parent-p)
+      (progn
+        (org-fold-hide-subtree)
+        (org-evil-motion-up-heading))
+    (if (org-at-heading-p)
+        (error "Already at first heading")
+      (org-evil-motion-up-heading))))
 
 (provide 'zorg)
 
