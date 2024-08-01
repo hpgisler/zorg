@@ -108,10 +108,6 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
 
 
 
-
-
-
-
 ;;;###autoload
 (defun zorg-backward-inner-heading ()
   (interactive)
@@ -119,9 +115,8 @@ such as, direct linking between zettels, topic zettel hubs, linking to related z
       (progn
         (org-fold-hide-subtree)
         (org-evil-motion-up-heading))
-    (if (org-at-heading-p)
-        (error "Already at first heading")
-      (org-evil-motion-up-heading))))
+    (zorg-backward-heading)))
+
 
 (provide 'zorg)
 
