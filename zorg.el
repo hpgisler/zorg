@@ -12,8 +12,8 @@
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd ")") #'zorg-forward-heading) 
     (define-key map (kbd "]") #'zorg-backward-heading) 
-    (define-key map (kbd "|") #'zorg-forward-inner-heading) 
-    (define-key map (kbd ">") #'zorg-backward-inner-heading) 
+    (define-key map (kbd "|") #'zorg-inner-or-forward-heading) 
+    (define-key map (kbd ">") #'zorg-outer-or-backward-heading) 
     map)
   "Keymap for `zorg-mode'.")
 
@@ -102,7 +102,7 @@ The final heading moved to will be the first top level heading."
 
 
 ;;;###autoload
-(defun zorg-forward-inner-heading ()
+(defun zorg-inner-or-forward-heading ()
   "Move to sub heading if it exists or forward 1 heading at the same level.
 
 If there are no more headings at the sub- or same level, attempt to move to
@@ -123,7 +123,7 @@ of the last top level heading."
 
 
 ;;;###autoload
-(defun zorg-backward-inner-heading ()
+(defun zorg-outer-or-backward-heading ()
   "Move to super heading if it exists or backward 1 heading at the same level.
 
 The final heading moved to will be the first top level heading."
