@@ -23,14 +23,30 @@
 (require 'org)
 (require 'evil)
 
-:(defvar zorg-mode-map
+(defvar zorg-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd ")") #'zorg-forward-heading)
-    (define-key map (kbd "]") #'zorg-backward-heading)
-    (define-key map (kbd "|") #'zorg-inner-or-forward-heading)
-    (define-key map (kbd ">") #'zorg-outer-or-backward-heading)
     map)
-  "Keymap for `zorg-mode'.")
+  "Keymap for 'zorg-mode'.
+It probably makes sense to define some keybindings.
+
+In standard Emacs keybindings, you probably may do something as follows:
+
+      (define-key zorg-mode-map (kbd \"C-}\") #'zorg-forward-heading)
+      (define-key zorg-mode-map (kbd \"C-{\") #'zorg-backward-heading)
+      (define-key zorg-mode-map (kbd \"C->\") #'zorg-inner-or-forward-heading)
+      (define-key zorg-mode-map (kbd \"C-<\") #'zorg-outer-or-backward-heading)
+      (define-key zorg-mode-map (kbd \"C-)\") #'org-fold-show-entry)
+      (define-key zorg-mode-map (kbd \"C-(\") #'org-fold-hide-entry)
+
+If you use 'evil' you may do the binding as indicated in the following example:
+
+    (evil-define-minor-mode-key '(motion normal) 'zorg-mode
+      \"}\" 'zorg-forward-heading
+      \"{\" 'zorg-backward-heading
+      \">\" 'zorg-inner-or-forward-heading
+      \"<\" 'zorg-outer-or-backward-heading
+      \")\" 'org-fold-show-entry  ; this is not actually a zorg function
+      \"(\" 'org-fold-hide-entry) ; this is not actually a zorg function")
 
 ;;;###autoload
 (define-minor-mode zorg-mode
