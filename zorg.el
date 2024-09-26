@@ -111,7 +111,7 @@ If there are no more headings at the same level, attempt to move to
 the next higher heading.
 The final heading moved to will be the last top level heading."
   (interactive)
-  (if (and (org-evil-motion--last-heading-same-level-p) (org-evil-motion--heading-has-parent-p))
+  (if (and (org-evil-motion--last-heading-same-level-p) (org-evil-motion--heading-has-parent-p) (zorg--next-headline-exists-p))
       (progn
         (org-evil-motion-up-heading)
         (zorg-forward-heading))
@@ -121,7 +121,7 @@ The final heading moved to will be the last top level heading."
               (org-fold-hide-subtree))
           (org-forward-heading-same-level 1)
           (org-fold-show-children))
-      (error "Already at the last top level heading"))))
+      (error "Already at the last heading"))))
 
 ;;;###autoload
 (defun zorg-backward-heading ()
@@ -177,6 +177,12 @@ The final heading moved to will be the first top level heading."
         (org-fold-hide-subtree)
         (org-evil-motion-up-heading))
     (zorg-backward-heading)))
+
+(defun zorg--next-headline-exists-p ()
+  "Check whether there exists a next headline after point."
+  (save-excursion
+    (outline-next-heading)
+    (not (eobp))))
 
 (provide 'zorg)
 
