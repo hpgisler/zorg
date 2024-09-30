@@ -48,6 +48,16 @@ If you use 'evil' you may do the binding as indicated in the following example:
       \")\" 'org-fold-show-entry  ; this is not actually a zorg function
       \"(\" 'org-fold-hide-entry) ; this is not actually a zorg function")
 
+
+;;;###autoload
+(defun zorg-toggle-fold-state ()
+  "Toggle fold state of headings."
+  (interactive)
+  (put 'zorg-toggle-fold-state 'fold-state-p (not (get 'zorg-toggle-fold-state 'fold-state-p)))
+  (zorg--update-fold))
+
+
+
 ;;;###autoload
 (define-minor-mode zorg-mode
   "Buffer-local minor mode for navigating 'org-mode' formatted Zettelkasten.
@@ -121,7 +131,8 @@ The final heading moved to will be the last top level heading."
               (org-fold-hide-subtree))
           (org-forward-heading-same-level 1)
           (org-fold-show-children))
-      (error "Already at the last heading"))))
+      (error "Already at the last heading")))
+  (zorg--update-fold))
 
 ;;;###autoload
 (defun zorg-backward-heading ()
@@ -144,7 +155,8 @@ The final heading moved to will be the first top level heading."
     (progn
       (org-fold-hide-subtree)
       (org-backward-heading-same-level 1)
-      (org-fold-show-children))))
+      (org-fold-show-children)))
+  (zorg--update-fold))
 
 ;;;###autoload
 (defun zorg-inner-or-forward-heading ()
@@ -163,7 +175,8 @@ of the last top level heading."
           (progn 
             (org-next-visible-heading 1)
             (org-fold-show-children))
-        (zorg-forward-heading)))))
+        (zorg-forward-heading))))
+  (zorg--update-fold))
 
 ;;;###autoload
 (defun zorg-outer-or-backward-heading ()
@@ -176,13 +189,21 @@ The final heading moved to will be the first top level heading."
             (org-evil-motion-up-heading))
         (org-fold-hide-subtree)
         (org-evil-motion-up-heading))
-    (zorg-backward-heading)))
+    (zorg-backward-heading))
+  (zorg--update-fold))
+
 
 (defun zorg--next-headline-exists-p ()
   "Check whether there exists a next headline after point."
   (save-excursion
     (outline-next-heading)
     (not (eobp))))
+
+
+(defun zorg--update-fold ()
+  "Based on `zorg-toggle-fold-state' show or hide current heading."
+  (funcall (if (get 'zorg-toggle-fold-state 'fold-state-p) #'org-fold-show-entry #'org-fold-hide-entry)))
+
 
 (provide 'zorg)
 
